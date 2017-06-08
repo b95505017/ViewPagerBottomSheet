@@ -1,40 +1,31 @@
 buildscript {
     repositories {
         jcenter()
+        maven { url 'https://maven.google.com' }
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.2.3'
-        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.android.tools.build:gradle:2.3.2'
     }
+}
+
+plugins {
+    id "com.github.dcendents.android-maven" version "1.5"
 }
 
 ext {
-    runningOnJenkins = System.getenv('JENKINS_URL') != null
-    nexusReleasesRepository = getEnvOrProperty('NEXUS_RELEASES_REPOSITORY')
-    nexusSnapshotsRepository = getEnvOrProperty('NEXUS_SNAPSHOTS_REPOSITORY')
-    nexusUsername = getEnvOrProperty('NEXUS_USERNAME')
-    nexusPassword = getEnvOrProperty('NEXUS_PASSWORD')
 
     compileSdkVersion = 25
-    buildToolsVersion = '25.0.0'
+    buildToolsVersion = '25.0.3'
     targetSdkVersion = 25
 
-    supportVersion = '25.1.0'
-    butterknifeVersion = '8.4.0'
+    supportVersion = '25.3.1'
+    butterknifeVersion = '8.6.0'
 }
+
 
 allprojects {
     repositories {
         jcenter()
-        maven { url "https://raw.github.com/laenger/maven-releases/master/releases" }
-        maven { url "https://raw.github.com/laenger/maven-releases/master/snapshots" }
+        maven { url 'https://maven.google.com' }
     }
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-
-def getEnvOrProperty(String name) {
-    return System.getenv(name) ?: project.hasProperty(name) ? project[name] : '';
 }
