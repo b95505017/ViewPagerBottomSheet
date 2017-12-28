@@ -2,7 +2,6 @@ package biz.laenger.android.vpbs;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
@@ -93,7 +92,7 @@ public final class ViewPagerBottomSheetDialog extends AppCompatDialog {
         if (layoutResId != 0 && view == null) {
             view = getLayoutInflater().inflate(layoutResId, coordinator, false);
         }
-        FrameLayout bottomSheet = (FrameLayout) coordinator.findViewById(R.id.design_bottom_sheet);
+        FrameLayout bottomSheet = coordinator.findViewById(R.id.design_bottom_sheet);
         mBehavior = ViewPagerBottomSheetBehavior.from(bottomSheet);
         mBehavior.setBottomSheetCallback(mBottomSheetCallback);
         mBehavior.setHideable(mCancelable);
@@ -139,14 +138,10 @@ public final class ViewPagerBottomSheetDialog extends AppCompatDialog {
 
     boolean shouldWindowCloseOnTouchOutside() {
         if (!mCanceledOnTouchOutsideSet) {
-            if (Build.VERSION.SDK_INT < 11) {
-                mCanceledOnTouchOutside = true;
-            } else {
-                TypedArray a = getContext().obtainStyledAttributes(
-                        new int[]{android.R.attr.windowCloseOnTouchOutside});
-                mCanceledOnTouchOutside = a.getBoolean(0, true);
-                a.recycle();
-            }
+            TypedArray a = getContext().obtainStyledAttributes(
+                    new int[]{android.R.attr.windowCloseOnTouchOutside});
+            mCanceledOnTouchOutside = a.getBoolean(0, true);
+            a.recycle();
             mCanceledOnTouchOutsideSet = true;
         }
         return mCanceledOnTouchOutside;

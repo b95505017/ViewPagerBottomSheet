@@ -8,7 +8,7 @@ android {
     buildToolsVersion rootProject.buildToolsVersion
 
     defaultConfig {
-        minSdkVersion 9
+        minSdkVersion 14
         targetSdkVersion rootProject.targetSdkVersion
         versionName '0.0.1'
         versionCode 1
@@ -28,6 +28,6 @@ android {
 }
 
 dependencies {
-    compile "com.android.support:design:${supportVersion}"
+    api "com.android.support:design:${supportVersion}"
 }
 

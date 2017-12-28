@@ -28,9 +28,9 @@ android {
 }
 
 dependencies {
-    compile "com.android.support:design:${supportVersion}"
-    compile project(':vpbs')
+    implementation "com.android.support:design:${supportVersion}"
+    implementation project(':vpbs')
 
-    compile "com.jakewharton:butterknife:${butterknifeVersion}"
+    implementation "com.jakewharton:butterknife:${butterknifeVersion}"
     annotationProcessor "com.jakewharton:butterknife-compiler:${butterknifeVersion}"
 }
